@@ -526,12 +526,15 @@ class GroupProfileController extends GroupController
         // Begin transaction - DB will be rolled back if an exception occurs
         Capsule::transaction(function () use ($data, $group, $currentUser) {
             // Update the group and generate success messages
+            // JosefMor filled by method
+            $filled_data = array();
             foreach ($data as $name => $value) {
                 if ($value != $group->$name) {
-                    $group->$name = $value;
+                    $filled_data[$name] = $value;
                 }
             }
 
+            $group->fill($filled_data);
             $group->save();
 
             // We now have to update the custom profile fields
