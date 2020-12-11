@@ -735,7 +735,7 @@ class UserProfileController extends UserController
         // Begin transaction - DB will be rolled back if an exception occurs
         Capsule::transaction(function () use ($data, $user, $currentUser) {
             // Update the user and generate success messages
-            $filled_data = array(); // JosefMor filled by method
+            $filled_data = []; // JosefMor filled by method
             foreach ($data as $name => $value) {
                 if ($value != $user->$name) {
                     $filled_data[$name] = $value;

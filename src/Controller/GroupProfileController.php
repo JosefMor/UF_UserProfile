@@ -527,7 +527,7 @@ class GroupProfileController extends GroupController
         Capsule::transaction(function () use ($data, $group, $currentUser) {
             // Update the group and generate success messages
             // JosefMor filled by method
-            $filled_data = array();
+            $filled_data = [];
             foreach ($data as $name => $value) {
                 if ($value != $group->$name) {
                     $filled_data[$name] = $value;
