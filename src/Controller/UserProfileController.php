@@ -696,9 +696,10 @@ class UserProfileController extends UserController
         $currentUser = $this->ci->currentUser;
 
         // Access-controlled resource - check that currentUser has permission to edit submitted fields for this user
-        if (!$authorizer->checkAccess($currentUser, 'update_user_field', [
+        if (!$authorizer->checkAccess($currentUser, 'update_user_field_less_restrictive', [
             'user' => $user,
-            'fields' => array_values(array_unique($fieldNames)),
+            //JMhack dynamicky pridavana pole
+            //'fields' => array_values(array_unique($fieldNames)),
         ])) {
             throw new ForbiddenException();
         }
